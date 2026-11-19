@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bible Basic Pertemuan 2 — Kebenaran Allah vs Kebenaran Diri</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&family=Fraunces:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root{
+  --violet:#7c3aed;
+  --indigo:#6366f1;
+  --pink:#ec4899;
+  --amber:#f59e0b;
+  --orange:#ea580c;
+  --emerald:#10b981;
+  --teal:#14b8a6;
+  --cyan:#06b6d4;
+  --sky:#0ea5e9;
+  --rose:#f43f5e;
+
+  --ink:#0f172a;
+  --ink-2:#1e293b;
+  --muted:#64748b;
+  --soft:#475569;
+  --line:rgba(15,23,42,.08);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+html,body{height:100%;}
+
+body{
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(1200px 800px at 10% -10%, #1e1b4b 0%, transparent 55%),
+    radial-gradient(900px 600px at 110% 110%, #4c1d95 0%, transparent 55%),
+    #05060f;
+  overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+/* ============ STAGE ============ */
+.stage{
+  min-height:100dvh;
+  display:grid;
+  place-items:center;
+  padding:clamp(10px, 2vmin, 28px);
+}
+
+/* ============ SLIDE BASE ============ */
+.slide{
+  display:none;
+  width:min(100%, calc((100dvh - 130px) * 16 / 9));
+  aspect-ratio:16/9;
+  border-radius:clamp(14px, 1.6vmin, 24px);
+  overflow:hidden;
+  position:relative;
+  isolation:isolate;
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:
+    0 40px 80px -30px rgba(0,0,0,.6),
+    0 0 0 1px rgba(255,255,255,.04) inset;
+  padding:clamp(20px, 4vmin, 60px);
+  animation:slideIn .55s cubic-bezier(.2,.8,.2,1);
+}
+.slide.active{display:flex;flex-direction:column;}
+.slide > *{position:relative;z-index:1;}
+
+/* ============ DARK THEME ============ */
+.slide[data-theme="dark"]{
+  background:
+    radial-gradient(90% 70% at 15% 0%, rgba(124,58,237,.55) 0%, transparent 55%),
+    radial-gradient(70% 60% at 100% 100%, rgba(236,72,153,.4) 0%, transparent 55%),
+    radial-gradient(60% 60% at 100% 0%, rgba(6,182,212,.28) 0%, transparent 55%),
+    radial-gradient(80% 70% at 0% 100%, rgba(139,92,246,.28) 0%, transparent 55%),
+    linear-gradient(160deg, #0b0f1f 0%, #131a35 55%, #1e1b4b 100%);
+  color:#f8fafc;
+}
+.slide[data-theme="dark"]::before,
+.slide[data-theme="dark"]::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  filter:blur(70px);
+  opacity:.55;
+  pointer-events:none;
+  z-index:0;
+}
+.slide[data-theme="dark"]::before{
+  width:min(52%, 380px);
+  height:min(52%, 380px);
+  background:#7c3aed;
+  top:-15%;left:-10%;
+  animation:float1 14s ease-in-out infinite;
+}
+.slide[data-theme="dark"]::after{
+  width:min(48%, 340px);
+  height:min(48%, 340px);
+  background:#ec4899;
+  bottom:-15%;right:-10%;
+  animation:float2 16s ease-in-out infinite;
+}
+
+/* ============ LIGHT THEME ============ */
+.slide[data-theme="light"]{
+  background:
+    radial-gradient(80% 60% at 100% 0%, #fef3c7 0%, transparent 60%),
+    radial-gradient(80% 60% at 0% 100%, #e0e7ff 0%, transparent 60%),
+    radial-gradient(60% 60% at 50% 100%, #fce7f3 0%, transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, #fdfcff 100%);
+  color:var(--ink);
+  border-color:rgba(15,23,42,.06);
+}
+
+/* ============ SLIDE 1 — HERO ============ */
+.slide-hero{
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  gap:clamp(8px, 1.6vmin, 18px);
+}
+.kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.18);
+  color:#c4b5fd;
+  font-family:'Outfit',sans-serif;
+  font-weight:700;
+  font-size:clamp(10px, 1.35vmin, 15px);
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  padding:clamp(5px, .9vmin, 9px) clamp(12px, 1.8vmin, 22px);
+  border-radius:999px;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  box-shadow:0 8px 24px -8px rgba(124,58,237,.6);
+}
+.kicker.light{
+  background:#eef2ff;
+  border:1px solid #c7d2fe;
+  color:#4338ca;
+  box-shadow:0 8px 24px -12px rgba(99,102,241,.4);
+}
+.hero-title{
+  font-family:'Outfit',sans-serif;
+  font-weight:900;
+  font-size:clamp(30px, 6.6vmin, 92px);
+  line-height:1.05;
+  letter-spacing:-.025em;
+  background:linear-gradient(135deg, #ffffff 0%, #e9d5ff 45%, #fbcfe8 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  filter:drop-shadow(0 8px 40px rgba(168,85,247,.35));
+  padding:0 clamp(8px, 1.5vmin, 20px);
+}
+.hero-rule{
+  width:clamp(70px, 10vmin, 140px);
+  height:5px;
+  border-radius:999px;
+  background:linear-gradient(90deg, #a78bfa, #f0abfc, #67e8f9);
+  box-shadow:0 0 22px rgba(192,132,252,.7);
+  margin:clamp(6px, 1.4vmin, 20px) auto;
+}
+.hero-date{
+  font-family:'Outfit',sans-serif;
+  font-weight:700;
+  font-size:clamp(13px, 2.1vmin, 26px);
+  color:rgba(226,232,240,.9);
+  padding:clamp(6px, 1.1vmin, 12px) clamp(16px, 2.4vmin, 30px);
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(10px);
+  letter-spacing:.02em;
+}
+
+/* ============ CENTER SLIDES ============ */
+.slide-center{
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  gap:clamp(10px, 2.2vmin, 26px);
+}
+.big-icon{
+  font-size:clamp(30px, 6vmin, 78px);
+  color:#fff;
+  width:clamp(76px, 14vmin, 168px);
+  height:clamp(76px, 14vmin, 168px);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 30% 20%, #a78bfa 0%, #7c3aed 45%, #4f46e5 100%);
+  box-shadow:
+    0 20px 60px -18px rgba(124,58,237,.7),
+    0 0 0 1px rgba(255,255,255,.2) inset;
+  position:relative;
+}
+.big-icon::after{
+  content:"";
+  position:absolute;
+  inset:-10px;
+  border-radius:50%;
+  background:conic-gradient(from 0deg, #7c3aed, #ec4899, #f59e0b, #10b981, #06b6d4, #7c3aed);
+  z-index:-1;
+  filter:blur(18px);
+  opacity:.55;
+  animation:spin 8s linear infinite;
+}
+.big-icon.gradient-green{
+  background:radial-gradient(circle at 30% 20%, #6ee7b7 0%, #10b981 45%, #059669 100%);
+}
+.big-icon.gradient-green::after{
+  background:conic-gradient(from 0deg, #10b981, #06b6d4, #7c3aed, #10b981);
+}
+.big-icon.gradient-amber{
+  background:radial-gradient(circle at 30% 20%, #fcd34d 0%, #f59e0b 45%, #ea580c 100%);
+}
+.big-icon.gradient-amber::after{
+  background:conic-gradient(from 0deg, #f59e0b, #ec4899, #f43f5e, #f59e0b);
+}
+.slide-center .display{
+  font-family:'Outfit',sans-serif;
+  font-weight:800;
+  font-size:clamp(24px, 5vmin, 62px);
+  line-height:1.1;
+  letter-spacing:-.02em;
+  max-width:22ch;
+}
+.slide[data-theme="light"] .display{color:var(--ink);}
+.slide[data-theme="dark"] .display{color:#f8fafc;}
+.slide-center .sub{
+  font-size:clamp(12px, 1.9vmin, 22px);
+  color:var(--muted);
+  font-weight:500;
+  max-width:60ch;
+  line-height:1.5;
+}
+.speaker-name{
+  font-family:'Outfit',sans-serif;
+  font-weight:700;
+  font-size:clamp(16px, 2.9vmin, 36px);
+  color:#fff;
+  padding:clamp(8px, 1.4vmin, 16px) clamp(18px, 2.8vmin, 36px);
+  border-radius:16px;
+  background:linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+  box-shadow:
+    0 20px 50px -18px rgba(124,58,237,.65),
+    0 0 0 1px rgba(255,255,255,.15) inset;
+}
+.materi-title{
+  font-family:'Outfit',sans-serif;
+  font-weight:900;
+  font-size:clamp(28px, 5.8vmin, 74px);
+  line-height:1.05;
+  letter-spacing:-.025em;
+  background:linear-gradient(135deg, #4f46e5 0%, #7c3aed 40%, #ec4899 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  max-width:20ch;
+}
+
+/* ============ VIDEO SLIDE ============ */
+.slide-video{
+  justify-content:center;
+  align-items:center;
+  gap:clamp(10px, 2vmin, 22px);
+}
+.video-wrap{
+  width:100%;
+  max-width:min(100%, 1000px);
+  aspect-ratio:16/9;
+  background:#05060f;
+  border-radius:clamp(10px, 1.2vmin, 18px);
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:
+    0 30px 80px -20px rgba(124,58,237,.45),
+    0 0 0 1px rgba(255,255,255,.06) inset;
+}
+.video-wrap video{width:100%;height:100%;object-fit:contain;background:#05060f;display:block;}
+.video-empty{
+  color:#cbd5e1;
+  font-size:clamp(11px, 1.7vmin, 19px);
+  text-align:center;
+  padding:clamp(16px, 3vmin, 34px);
+  line-height:1.6;
+  max-width:520px;
+}
+.video-empty i{
+  display:block;
+  font-size:clamp(24px, 4.4vmin, 52px);
+  margin-bottom:12px;
+  background:linear-gradient(135deg, #a78bfa, #f0abfc);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.video-empty b{color:#f8fafc;}
+
+.pick-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  color:#fff;
+  font-family:'Outfit',sans-serif;font-weight:700;
+  font-size:clamp(11px, 1.65vmin, 18px);
+  padding:clamp(7px, 1.2vmin, 13px) clamp(16px, 2.4vmin, 28px);
+  border-radius:999px;cursor:pointer;border:none;
+  background:linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
+  box-shadow:
+    0 18px 40px -14px rgba(124,58,237,.7),
+    0 0 0 1px rgba(255,255,255,.14) inset;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.pick-btn:hover{transform:translateY(-2px);box-shadow:0 22px 50px -14px rgba(236,72,153,.85);}
+.pick-btn:active{transform:translateY(0);}
+
+/* ============ STEP SLIDES ============ */
+.slide-step{
+  background:
+    radial-gradient(80% 60% at 100% 0%, #fef3c7 0%, transparent 60%),
+    radial-gradient(80% 60% at 0% 100%, #e0e7ff 0%, transparent 60%),
+    #ffffff;
+  color:var(--ink);
+  border-color:rgba(15,23,42,.06);
+}
+.step{
+  display:grid;
+  grid-template-columns:minmax(0, .95fr) minmax(0, 2.6fr);
+  gap:clamp(10px, 1.8vmin, 24px);
+  flex:1;
+  min-height:0;
+}
+.step-aside{
+  border-radius:clamp(12px, 1.4vmin, 20px);
+  padding:clamp(14px, 2.6vmin, 34px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:clamp(6px, 1.2vmin, 14px);
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  transition:transform .3s ease;
+}
+.step-aside::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 80% 0%, rgba(255,255,255,.25) 0%, transparent 55%),
+    radial-gradient(circle at 0% 100%, rgba(0,0,0,.2) 0%, transparent 55%);
+  z-index:0;
+}
+.step-aside::after{
+  content:"";
+  position:absolute;
+  width:min(140%, 260px);
+  height:min(140%, 260px);
+  border-radius:50%;
+  right:-40%;
+  bottom:-40%;
+  background:rgba(255,255,255,.1);
+  z-index:0;
+}
+.step-aside[data-step="1"]{
+  background:linear-gradient(160deg, #a78bfa 0%, #7c3aed 50%, #4f46e5 100%);
+  box-shadow:0 24px 60px -20px rgba(124,58,237,.65);
+}
+.step-aside[data-step="2"]{
+  background:linear-gradient(160deg, #67e8f9 0%, #06b6d4 50%, #0284c7 100%);
+  box-shadow:0 24px 60px -20px rgba(6,182,212,.6);
+}
+.step-aside[data-step="3"]{
+  background:linear-gradient(160deg, #fcd34d 0%, #f59e0b 50%, #ea580c 100%);
+  box-shadow:0 24px 60px -20px rgba(245,158,11,.6);
+}
+.step-aside[data-step="4"]{
+  background:linear-gradient(160deg, #6ee7b7 0%, #10b981 50%, #059669 100%);
+  box-shadow:0 24px 60px -20px rgba(16,185,129,.6);
+}
+.step-aside[data-step="5"]{
+  background:linear-gradient(160deg, #f9a8d4 0%, #ec4899 50%, #db2777 100%);
+  box-shadow:0 24px 60px -20px rgba(236,72,153,.6);
+}
+.step-aside > *{position:relative;z-index:1;}
+.step-num{
+  font-family:'Outfit',sans-serif;
+  font-weight:800;
+  font-size:clamp(10px, 1.55vmin, 18px);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.85);
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.step-num::before{
+  content:"";
+  width:22px;
+  height:2px;
+  background:rgba(255,255,255,.9);
+  border-radius:2px;
+}
+.step-title{
+  font-family:'Outfit',sans-serif;
+  font-weight:800;
+  font-size:clamp(16px, 2.5vmin, 32px);
+  line-height:1.15;
+  letter-spacing:-.01em;
+}
+.verse-chip{
+  align-self:flex-start;
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.3);
+  color:#fff;
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(10px, 1.4vmin, 16px);
+  font-weight:700;
+  padding:clamp(3px, .6vmin, 6px) clamp(9px, 1.4vmin, 14px);
+  border-radius:999px;
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  letter-spacing:.02em;
+}
+.step-body{
+  background:#ffffff;
+  border:1px solid rgba(15,23,42,.06);
+  border-radius:clamp(12px, 1.4vmin, 20px);
+  padding:clamp(16px, 3vmin, 42px);
+  display:flex;
+  align-items:center;
+  min-height:0;
+  overflow:auto;
+  box-shadow:
+    0 10px 30px -20px rgba(15,23,42,.15),
+    0 0 0 1px rgba(255,255,255,.6) inset;
+}
+.script{
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  font-weight:600;
+  font-size:clamp(14px, 2.3vmin, 31px);
+  line-height:1.55;
+  color:#1e293b;
+  border-left:5px solid;
+  border-image:linear-gradient(180deg, #7c3aed, #ec4899) 1;
+  padding-left:clamp(12px, 1.9vmin, 24px);
+  letter-spacing:.005em;
+}
+.step-aside[data-step="2"] ~ .step-body .script{
+  border-image:linear-gradient(180deg, #06b6d4, #0284c7) 1;
+}
+.step-aside[data-step="3"] ~ .step-body .script{
+  border-image:linear-gradient(180deg, #f59e0b, #ea580c) 1;
+}
+.step-aside[data-step="4"] ~ .step-body .script{
+  border-image:linear-gradient(180deg, #10b981, #059669) 1;
+}
+.step-aside[data-step="5"] ~ .step-body .script{
+  border-image:linear-gradient(180deg, #ec4899, #db2777) 1;
+}
+
+/* ============ TIPS SLIDE ============ */
+.slide-tips{
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  gap:clamp(10px, 2vmin, 24px);
+}
+.tips-heading{
+  font-family:'Outfit',sans-serif;
+  font-weight:800;
+  font-size:clamp(22px, 4vmin, 48px);
+  letter-spacing:-.02em;
+  background:linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.tips-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:clamp(8px, 1.6vmin, 20px);
+  width:100%;
+  max-width:1100px;
+}
+.tip-card{
+  border-radius:clamp(10px, 1.2vmin, 18px);
+  padding:clamp(12px, 2.2vmin, 28px);
+  background:#ffffff;
+  text-align:left;
+  border:1px solid rgba(15,23,42,.06);
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 14px 40px -20px rgba(15,23,42,.18);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.tip-card::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;
+  height:4px;
+}
+.tip-card:nth-child(1)::before{background:linear-gradient(90deg,#7c3aed,#ec4899);}
+.tip-card:nth-child(2)::before{background:linear-gradient(90deg,#f59e0b,#ea580c);}
+.tip-card:nth-child(3)::before{background:linear-gradient(90deg,#06b6d4,#10b981);}
+.tip-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px -18px rgba(15,23,42,.25);}
+.tip-card h5{
+  font-family:'Outfit',sans-serif;
+  font-weight:800;
+  font-size:clamp(12px, 1.9vmin, 22px);
+  color:var(--ink);
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:8px;
+  letter-spacing:-.01em;
+}
+.tip-card:nth-child(1) h5 i{color:#7c3aed;}
+.tip-card:nth-child(2) h5 i{color:#f59e0b;}
+.tip-card:nth-child(3) h5 i{color:#06b6d4;}
+.tip-card p{
+  font-size:clamp(11px, 1.55vmin, 17px);
+  color:var(--soft);
+  line-height:1.55;
+}
+.tip-card p i{color:var(--ink-2);font-style:italic;font-weight:600;}
+
+/* ============ HUD ============ */
+.progress{
+  position:fixed;top:0;left:0;height:4px;width:0;
+  background:linear-gradient(90deg, #7c3aed, #ec4899, #f59e0b, #10b981, #06b6d4);
+  background-size:200% 100%;
+  z-index:60;
+  transition:width .35s cubic-bezier(.2,.8,.2,1);
+  border-radius:0 4px 4px 0;
+  box-shadow:0 0 20px rgba(124,58,237,.6);
+  animation:gradientMove 6s linear infinite;
+}
+
+.hud{
+  position:fixed;left:50%;bottom:16px;transform:translateX(-50%);
+  display:flex;align-items:center;gap:6px;
+  background:rgba(15,23,42,.85);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+  color:#e2e8f0;
+  padding:6px 8px;border-radius:999px;
+  font-size:13px;font-weight:600;
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 20px 44px -12px rgba(0,0,0,.6);
+  z-index:70;
+  user-select:none;
+}
+.hud .nav-btn{
+  width:38px;height:38px;border-radius:50%;
+  border:none;cursor:pointer;
+  background:rgba(255,255,255,.06);color:#e2e8f0;
+  display:grid;place-items:center;font-size:13px;
+  transition:all .2s ease;
+}
+.hud .nav-btn:hover:not(:disabled){
+  background:linear-gradient(135deg, #7c3aed, #ec4899);
+  color:#fff;
+  transform:scale(1.08);
+  box-shadow:0 8px 20px -8px rgba(236,72,153,.9);
+}
+.hud .nav-btn:disabled{opacity:.28;cursor:not-allowed;}
+.counter{
+  min-width:66px;text-align:center;
+  font-family:'Outfit',sans-serif;
+  font-weight:700;
+  letter-spacing:.06em;
+  font-size:12.5px;
+  color:#f1f5f9;
+  padding:0 6px;
+}
+.hud .divider{width:1px;height:20px;background:rgba(255,255,255,.14);margin:0 4px;}
+
+/* Side nav arrows (desktop) */
+.side-nav{
+  position:fixed;top:50%;transform:translateY(-50%);
+  width:46px;height:46px;border-radius:50%;
+  background:rgba(15,23,42,.75);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.12);
+  color:#e2e8f0;display:grid;place-items:center;
+  cursor:pointer;z-index:65;
+  transition:all .2s ease;
+  font-size:14px;
+}
+.side-nav:hover:not(:disabled){
+  background:linear-gradient(135deg, #7c3aed, #ec4899);
+  border-color:transparent;
+  color:#fff;
+  transform:translateY(-50%) scale(1.06);
+}
+.side-nav:disabled{opacity:.2;cursor:not-allowed;}
+.side-nav.prev{left:14px;}
+.side-nav.next{right:14px;}
+
+/* ============ ANIMATIONS ============ */
+@keyframes slideIn{
+  from{opacity:0;transform:translateY(24px) scale(.985);}
+  to{opacity:1;transform:translateY(0) scale(1);}
+}
+@keyframes float1{
+  0%,100%{transform:translate(0,0) scale(1);}
+  50%{transform:translate(50px,40px) scale(1.08);}
+}
+@keyframes float2{
+  0%,100%{transform:translate(0,0) scale(1);}
+  50%{transform:translate(-50px,-30px) scale(1.06);}
+}
+@keyframes spin{
+  to{transform:rotate(360deg);}
+}
+@keyframes gradientMove{
+  0%{background-position:0% 50%;}
+  100%{background-position:200% 50%;}
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1024px){
+  .side-nav{display:none;}
+}
+
+@media (max-aspect-ratio:4/3) and (max-width:900px){
+  .slide{
+    aspect-ratio:auto;
+    width:100%;
+    height:calc(100dvh - 110px);
+    min-height:0;
+    border-radius:18px;
+  }
+  .step{
+    grid-template-columns:1fr;
+    grid-template-rows:auto 1fr;
+    gap:10px;
+  }
+  .step-aside{
+    padding:clamp(12px, 3vmin, 22px);
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .step-title{font-size:clamp(15px, 3.6vmin, 22px);}
+  .tips-grid{grid-template-columns:1fr;max-height:100%;overflow:auto;}
+  .tip-card{padding:14px 16px;}
+  .step-body{padding:clamp(14px, 3.2vmin, 24px);}
+}
+
+@media (max-width:640px){
+  .stage{padding:8px;}
+  .slide{padding:clamp(16px, 5vmin, 28px);border-radius:16px;}
+  .hero-title{font-size:clamp(28px, 9vmin, 48px);}
+  .materi-title{font-size:clamp(24px, 8vmin, 40px);}
+  .slide-center .display{font-size:clamp(22px, 7vmin, 38px);}
+  .hud{bottom:10px;padding:5px 6px;gap:4px;}
+  .hud .nav-btn{width:34px;height:34px;}
+  .counter{min-width:56px;font-size:11.5px;}
+}
+
+/* ============ PRINT ============ */
+@media print{
+  body{background:#fff;overflow:visible;}
+  .stage{display:block;padding:0;min-height:auto;}
+  .slide{
+    display:flex !important;
+    flex-direction:column;
+    width:100%;
+    aspect-ratio:16/9;
+    box-shadow:none;
+    border:none;
+    border-radius:0;
+    break-after:page;
+    page-break-after:always;
+    animation:none;
+  }
+  .hud,.progress,.side-nav{display:none !important;}
+  .slide[data-theme="dark"]::before,
+  .slide[data-theme="dark"]::after{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<div class="stage" id="stage">
+
+  <!-- ============ SLIDE 1 ============ -->
+  <section class="slide slide-hero active" data-theme="dark">
+    <span class="kicker"><i class="fa-solid fa-book-open"></i> Bible Basic</span>
+    <h1 class="hero-title">Bible Basic<br>Pertemuan 2</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-date"><i class="fa-regular fa-calendar"></i> Kamis, 19 November 2026</p>
+  </section>
+
+  <!-- ============ SLIDE 2 ============ -->
+  <section class="slide slide-center" data-theme="dark">
+    <div class="big-icon"><i class="fa-solid fa-music"></i></div>
+    <h2 class="display">Bernyanyi Lagu Pujian</h2>
+    <p class="sub">Mari angkat suara, masuk dalam hadirat-Nya</p>
+  </section>
+
+  <!-- ============ SLIDE 3 ============ -->
+  <section class="slide slide-video" data-theme="dark">
+    <div class="video-wrap">
+      <video id="slideVideo" controls playsinline preload="metadata">
+        <source src="lagu-pujian.mp4" type="video/mp4">
+      </video>
+    </div>
+    <label class="pick-btn">
+      <i class="fa-solid fa-folder-open"></i> Pilih file video
+      <input type="file" accept="video/*" hidden id="videoPicker">
+    </label>
+  </section>
+
+  <!-- ============ SLIDE 4 ============ -->
+  <section class="slide slide-center" data-theme="light">
+    <div class="big-icon gradient-green"><i class="fa-solid fa-hands-praying"></i></div>
+    <h2 class="display">Doa Pembuka</h2>
+    <p class="sub">Membuka hati, memohon penyertaan Tuhan</p>
+  </section>
+
+  <!-- ============ SLIDE 5 ============ -->
+  <section class="slide slide-center" data-theme="light">
+    <div class="big-icon gradient-amber"><i class="fa-solid fa-book-bible"></i></div>
+    <h2 class="display">Firman Tuhan</h2>
+    <p class="speaker-name">Oleh Pdt. Rimson Sinaga</p>
+  </section>
+
+  <!-- ============ SLIDE 6 ============ -->
+  <section class="slide slide-center" data-theme="light">
+    <span class="kicker light"><i class="fa-solid fa-seedling"></i> Penggemburan 2</span>
+    <h2 class="materi-title">Kebenaran Allah<br>vs Kebenaran Diri</h2>
+  </section>
+
+  <!-- ============ SLIDE 7 ============ -->
+  <section class="slide slide-step" data-theme="light">
+    <div class="step">
+      <aside class="step-aside" data-step="1">
+        <span class="step-num">Langkah 1</span>
+        <h3 class="step-title">Analogi / Ilustrasi (Hook)</h3>
+      </aside>
+      <div class="step-body">
+        <p class="script">“Bapak/Ibu, coba bayangkan kalau ada orang berlari sekencang-kencangnya di jalan raya yang padat, tapi matanya ditutup rapat dengan kain. Kira-kira apa yang bakal terjadi? Pasti kecelakaan besar, kan? Meskipun dia sangat bersemangat, tapi karena dia tidak melihat arah, semangat itu justru membahayakan dirinya sendiri.”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 8 ============ -->
+  <section class="slide slide-step" data-theme="light">
+    <div class="step">
+      <aside class="step-aside" data-step="2">
+        <span class="step-num">Langkah 2</span>
+        <h3 class="step-title">Iman Tanpa Pengetahuan</h3>
+        <span class="verse-chip">Roma 10:2-3</span>
+      </aside>
+      <div class="step-body">
+        <p class="script">“Sama halnya dalam kehidupan iman kita, Bapak/Ibu. Alkitab di Roma 10:2-3 mencatat tentang orang-orang yang sangat giat dan bersemangat untuk Allah, tetapi semangat mereka tidak didasarkan pada pengertian atau pengetahuan yang benar. Akhirnya, mereka malah mendirikan kebenaran mereka sendiri.”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 9 ============ -->
+  <section class="slide slide-step" data-theme="light">
+    <div class="step">
+      <aside class="step-aside" data-step="3">
+        <span class="step-num">Langkah 3</span>
+        <h3 class="step-title">Kebenaran Diri (The Gap)</h3>
+      </aside>
+      <div class="step-body">
+        <p class="script">“Nah, apa itu ‘Kebenaran Diri Sendiri’? Itu adalah ketika kita beribadah atau meyakini iman hanya berdasarkan tradisi, perasaan, atau pemikiran kita sendiri—bukan berdasarkan apa yang tertulis di Alkitab. Di mata kita rasanya sudah benar, tapi sebenarnya kita sedang berlari secara rohani dengan mata tertutup.”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 10 ============ -->
+  <section class="slide slide-step" data-theme="light">
+    <div class="step">
+      <aside class="step-aside" data-step="4">
+        <span class="step-num">Langkah 4</span>
+        <h3 class="step-title">Pengetahuan Sejati</h3>
+        <span class="verse-chip">Amsal 1:7</span>
+      </aside>
+      <div class="step-body">
+        <p class="script">“Di Amsal 1:7 dikatakan, ‘Takut akan TUHAN adalah permulaan pengetahuan’. Pengetahuan yang sejati dalam Alkitab bukanlah ilmu duniawi, melainkan pengenalan akan Firman Allah. Firman itulah ‘mata’ rohani kita yang menuntun arah iman kita agar kita tidak mengalami kecelakaan iman dan tersesat.”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 11 ============ -->
+  <section class="slide slide-step" data-theme="light">
+    <div class="step">
+      <aside class="step-aside" data-step="5">
+        <span class="step-num">Langkah 5</span>
+        <h3 class="step-title">Ajakan Membuka Mata</h3>
+        <span class="verse-chip">Roma 10:3</span>
+      </aside>
+      <div class="step-body">
+        <p class="script">“Jadi, supaya semangat iman kita tidak sia-sia, mari kita buka mata rohani kita dengan mempelajari Firman-Nya secara mendalam. Di Kelas Alkitab, kita akan dipandu dari dasar untuk memahami arah Firman Allah yang benar. Kelasnya gratis, online, dan interaktif sekali. Bapak/Ibu mau kan, agar kita berlari di jalan iman dengan mata yang terbuka lebar?”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 12 (opsional) ============ -->
+  <section class="slide slide-tips" data-theme="light">
+    <h2 class="tips-heading">Catatan Instruktur</h2>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <h5><i class="fa-solid fa-face-smile"></i> Sikap &amp; Ekspresi</h5>
+        <p>Hindari menghakimi jemaat atau murid. Sampaikan dengan nada mengayomi dan mengajak refleksi diri.</p>
+      </div>
+      <div class="tip-card">
+        <h5><i class="fa-solid fa-arrows-left-right"></i> Kelancaran (Pacing)</h5>
+        <p>Hafalkan kata kunci: <i>Lari Tutup Mata → Roma 10:2 → Definisi Kebenaran Diri → Amsal 1:7 → Ajakan Membuka Mata</i>.</p>
+      </div>
+      <div class="tip-card">
+        <h5><i class="fa-solid fa-circle-question"></i> Interaksi Murid</h5>
+        <p>Tanyakan di awal: ‘Pernahkah Bapak/Ibu melihat orang giat ibadah tapi hidupnya malah tidak teratur?’ Dengarkan responsnya.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ============ SIDE NAV ============ -->
+<button class="side-nav prev" id="sidePrev" title="Sebelumnya (←)"><i class="fa-solid fa-chevron-left"></i></button>
+<button class="side-nav next" id="sideNext" title="Berikutnya (→)"><i class="fa-solid fa-chevron-right"></i></button>
+
+<!-- ============ HUD ============ -->
+<div class="hud">
+  <button class="nav-btn" id="prevBtn" title="Sebelumnya (←)"><i class="fa-solid fa-chevron-left"></i></button>
+  <span class="counter" id="counter">1 / 12</span>
+  <button class="nav-btn" id="nextBtn" title="Berikutnya (→)"><i class="fa-solid fa-chevron-right"></i></button>
+  <span class="divider"></span>
+  <button class="nav-btn" id="fsBtn" title="Layar penuh (F)"><i class="fa-solid fa-expand"></i></button>
+</div>
+
+<script>
+(function () {
+  const slides   = Array.from(document.querySelectorAll('.slide'));
+  const total    = slides.length;
+  const counter  = document.getElementById('counter');
+  const progress = document.getElementById('progress');
+  const prevBtn  = document.getElementById('prevBtn');
+  const nextBtn  = document.getElementById('nextBtn');
+  const sidePrev = document.getElementById('sidePrev');
+  const sideNext = document.getElementById('sideNext');
+  const fsBtn    = document.getElementById('fsBtn');
+  const video    = document.getElementById('slideVideo');
+
+  let index = 0;
+
+  function render() {
+    slides.forEach((s, i) => s.classList.toggle('active', i === index));
+    counter.textContent = (index + 1) + ' / ' + total;
+    progress.style.width = ((index + 1) / total * 100) + '%';
+
+    const atStart = index === 0;
+    const atEnd   = index === total - 1;
+    prevBtn.disabled = atStart;
+    nextBtn.disabled = atEnd;
+    if (sidePrev) sidePrev.disabled = atStart;
+    if (sideNext) sideNext.disabled = atEnd;
+
+    if (video && !slides[index].contains(video)) video.pause();
+  }
+
+  function goTo(n) {
+    index = Math.max(0, Math.min(total - 1, n));
+    render();
+  }
+  const next = () => goTo(index + 1);
+  const prev = () => goTo(index - 1);
+
+  nextBtn.addEventListener('click', next);
+  prevBtn.addEventListener('click', prev);
+  sideNext && sideNext.addEventListener('click', next);
+  sidePrev && sidePrev.addEventListener('click', prev);
+
+  document.addEventListener('keydown', (e) => {
+    switch (e.key) {
+      case 'ArrowRight':
+      case 'ArrowDown':
+      case 'PageDown':
+      case ' ':
+      case 'Enter':
+        e.preventDefault(); next(); break;
+      case 'ArrowLeft':
+      case 'ArrowUp':
+      case 'PageUp':
+      case 'Backspace':
+        e.preventDefault(); prev(); break;
+      case 'Home': e.preventDefault(); goTo(0); break;
+      case 'End':  e.preventDefault(); goTo(total - 1); break;
+      case 'f': case 'F':
+        e.preventDefault(); toggleFullscreen(); break;
+    }
+  });
+
+  // Swipe (HP/tablet)
+  let touchX = 0, touchY = 0;
+  document.addEventListener('touchstart', (e) => {
+    touchX = e.changedTouches[0].clientX;
+    touchY = e.changedTouches[0].clientY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    const dy = e.changedTouches[0].clientY - touchY;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) {
+      dx < 0 ? next() : prev();
+    }
+  }, { passive: true });
+
+  function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      (document.documentElement.requestFullscreen || function(){}).call(document.documentElement);
+    } else {
+      document.exitFullscreen();
+    }
+  }
+  fsBtn.addEventListener('click', toggleFullscreen);
+  document.addEventListener('fullscreenchange', () => {
+    fsBtn.innerHTML = document.fullscreenElement
+      ? '<i class="fa-solid fa-compress"></i>'
+      : '<i class="fa-solid fa-expand"></i>';
+  });
+
+  // Pilih file video
+  const picker = document.getElementById('videoPicker');
+  if (picker) {
+    picker.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      video.innerHTML = '';
+      video.src = url;
+      video.load();
+      video.play().catch(() => {});
+    });
+  }
+
+  // Placeholder jika video belum dimuat
+  if (video) {
+    video.addEventListener('error', () => {
+      const wrap = video.parentElement;
+      if (!wrap.querySelector('.video-empty')) {
+        const note = document.createElement('div');
+        note.className = 'video-empty';
+        note.innerHTML = '<i class="fa-solid fa-film"></i>' +
+          'Video belum dimuat.<br>Klik tombol <b>“Pilih file video”</b> di bawah,<br>' +
+          'atau letakkan file <b>lagu-pujian.mp4</b> satu folder dengan file HTML ini.';
+        wrap.appendChild(note);
+        video.style.display = 'none';
+      }
+    });
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
